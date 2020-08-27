@@ -7,7 +7,7 @@ const pokemonScraper = async name  => {
     const browser = await puppeteer.launch({ args : ['--no-sandbox'] });
     const page = await browser.newPage();
     await page.setDefaultNavigationTimeout(0);
-    await page.setDefaultTimeout(10000);
+    await page.setDefaultTimeout(30000);
     await page.goto(`${URL}${name}`);
 
     await page.waitFor(s.pageHeaderTitle(), { visible : true });
