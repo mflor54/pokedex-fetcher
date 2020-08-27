@@ -3,7 +3,7 @@ const that = {
 
     pageHeaderTitle : () => `${that.pageHeader()} .page-header__title`,
 
-    physiology : () => '#mw-content-text > p:nth-child(8)',
+    physiology : () => '#mw-content-text h3 + p',
 
     noArticle : () => '.noarticletext'
 }
