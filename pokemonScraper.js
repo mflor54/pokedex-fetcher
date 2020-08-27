@@ -13,6 +13,7 @@ const pokemonScraper = async name  => {
     const noArticle = await page.$(s.noArticle());
 
     if(noArticle) {
+        await browser.close();
         return "I'm sorry, I could not find that pokemon."
     }
     else {
@@ -26,7 +27,6 @@ const pokemonScraper = async name  => {
         );
 
         await browser.close();
-
         return data;
     }
 };
