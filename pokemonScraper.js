@@ -4,7 +4,7 @@ const s = require('./selectors');
 const URL = 'https://pokemon.fandom.com/wiki';
 
 const pokemonScraper = async name  => {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ args : ['--no-sandbox'] });
     const page = await browser.newPage();
     await page.goto(`${URL}${name}`);
 
@@ -18,13 +18,7 @@ const pokemonScraper = async name  => {
     }
     else {
         await page.waitFor(s.physiology());
-
-        const data = await page.evaluate(
-            selector => {
-                const element = document.querySelector(selector).innerText;
-                return element;
-            }, s.physiology()
-        );
+        const data = await page.$eval(s.physiology(), e => e.innerText);
 
         await browser.close();
         return data;
