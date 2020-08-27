@@ -1,8 +1,8 @@
 const http = require('http');
 const scraper = require('./pokemonScraper');
 
-const hostname = '127.0.0.1';
-const port = 80;
+const hostname = 'localhost';
+const port = 3000;
 
 const server = http.createServer(async (req, res) => {
     const headers = {
@@ -19,6 +19,13 @@ const server = http.createServer(async (req, res) => {
 
         res.writeHead(200, headers);
         res.write(JSON.stringify(data));
+        res.end();
+    }
+    else {
+        const message = { message : 'Please enter a Pokemon name' };
+
+        res.writeHead(404, headers);
+        res.write(JSON.stringify(message));
         res.end();
     }
 });
